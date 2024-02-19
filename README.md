@@ -18,7 +18,104 @@ Welcome to the YOLOv8 Human Detection Beginner's Repository – your entry point
 
 6. **Roboflow Integration:** Easily create custom datasets for training by leveraging Roboflow. Use their platform to annotate images, manage datasets, and export the data in YOLOv8-compatible format, streamlining the process of preparing your own data for training.
 
-7. **Documentation for Beginners:** The documentation provides clear and concise instructions on setting up the environment, running the model, and understanding the basics of YOLOv8 for human detection. Perfect for those taking their first steps into the world of computer vision.
+7. **Dataset Specifications:**
+   - **Dataset Split:**
+      - TRAIN SET: 88%, 4200 Images
+      - VALID SET: 8%, 400 Images
+      - TEST SET: 4%, 200 Images
+
+   - **Preprocessing:**
+      - Auto-Orient: Applied
+      - Resize: Stretch to 640x640
+      - Auto-Adjust Contrast: Using Histogram Equalization
+
+   - **Augmentations:**
+      - Outputs per training example: 3
+      - Flip: Horizontal
+      - Rotation: Between -15° and +15°
+      - Grayscale: Apply to 15% of images
+      - Hue: Between -15° and +15°
+      - Saturation: Between -15% and +15%
+      - Brightness: Between -20% and +0%
+      - Blur: Up to 2.5px
+
+8. **Training Guide:**
+   ### Step-by-Step Guide: Training YOLOv8 on Custom Human Detection Dataset
+
+   #### 1. Install Required Libraries
+   ```python
+   # Install the Ultralytics library using pip
+   !pip install ultralytics
+
+   # Install the Roboflow library using pip
+   !pip install roboflow
+   ```
+
+   #### 2. Import Libraries
+   ```python
+   # Import the Roboflow and YOLO modules
+   from roboflow import Roboflow
+   from ultralytics import YOLO
+
+   # The 'Roboflow' module is used for working with datasets on the Roboflow platform
+   # The 'YOLO' module is imported from the 'ultralytics' library, which is used for YOLO object detection tasks
+   ```
+
+   #### 3. Set Up Roboflow Integration
+   ```python
+   # Import the Roboflow library and create an instance with the provided API key
+   api_key = "4DcIf06sr4RzL8YOksef"
+   rf = Roboflow(api_key)
+
+   # Access the Roboflow workspace named "lazydevs"
+   # Access the project named "human-detection" within the workspace
+   workspace_name = "lazydevs"
+   project_name = "human-detection"
+   project = rf.workspace(workspace_name).project(project_name)
+   ```
+
+   #### 4. Download Dataset from Roboflow
+   ```python
+   # Download the dataset associated with version 4 of the project using YOLOv8 format
+   # Note: You might want to include a specific version number or method for version selection.
+   version = 4
+   form = "yolov8"
+   dataset = project.version(version).download(form)
+   ```
+
+   #### 5. Initialize YOLOv8 Model
+   ```python
+   # Initialize the YOLO model by loading the pre-trained weights from 'yolov8n.pt'
+   model = YOLO('yolov8n.pt')
+   ```
+
+   #### 6. Train the Model
+   ```python
+   # Train the model with the specified parameters
+   results = model.train(
+       data='/kaggle/input/v4-yaml/data.yaml',  # Path to the training data YAML file
+       epochs=150,  # Number of training epochs
+       batch=64,  # Batch size for training
+       imgsz=640,  # Input image size
+       seed=32,  # Random seed for reproducibility
+       optimizer='NAdam',  # Optimizer algorithm
+       weight_decay=1e-4,  # Weight decay for regularization
+       momentum=0.937,  # Initial momentum for the optimizer
+       cos_lr=True,  # Use cosine learning rate scheduling
+       lr0=0.01,  # Initial learning rate
+       lrf=1e-5,  # Final learning rate
+       warmup_epochs=10,  # Number of warmup epochs
+       warmup_momentum=0.5,  # Momentum during warm-up epochs
+       close_mosaic=20,  # Parameter for close mosaic augmentation
+       label_smoothing=0.2,  # Label smoothing parameter for regularization
+       dropout=0.5,  # Dropout rate to prevent overfitting
+       verbose=True  # Print verbose training information
+   )
+   ```
+
+Follow these steps to train the YOLOv8 model on your custom human detection dataset. Adjust parameters and paths according to your specific requirements.
+
+9. **Documentation for Beginners:** The documentation provides clear and concise instructions on setting up the environment, running the model, and understanding the basics of YOLOv8 for human detection. Perfect for those taking their first steps into the world of computer vision.
 
 ## Getting Started:
 
