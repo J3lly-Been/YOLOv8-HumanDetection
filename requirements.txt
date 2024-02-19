@@ -1,0 +1,25 @@
+# Base Libraries
+numpy
+torch
+tqdm
+Pillow
+PyYAML
+scipy
+opencv-python
+matplotlib
+
+# Additional Libraries for Ultralytics
+torchvision
+scikit-learn
+
+# Additional Libraries for Roboflow
+requests
+python-magic
+pandas
+python-dotenv
+
+# Ultralytics
+ultralytics
+
+# Roboflow
+roboflow
