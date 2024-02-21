@@ -119,7 +119,7 @@ Follow these steps to train the YOLOv8 model on your custom human detection data
 
 ## Getting Started:
 
-1. Clone the repository: `git clone https://github.com/J3lly-Been/YOLOv8-Human-Detection-Beginner.git`
+1. Clone the repository: `git clone https://github.com/J3lly-Been/YOLOv8-HumanDetection.git`
 2. Follow the beginner-friendly setup instructions in the documentation to install necessary dependencies and get the model up and running.
 3. Explore the example code to understand how to use the pre-trained YOLOv8 model for human detection and leverage the provided notebooks for training and predictions. Additionally, use `best.pt` and `last.pt` for different scenarios, such as starting from the best-performing weights or continuing training.
 4. Utilize Roboflow to create custom datasets, annotate images, and seamlessly integrate your own data into the YOLOv8 model training process.
