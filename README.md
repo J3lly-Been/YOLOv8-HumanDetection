@@ -64,7 +64,7 @@ Welcome to the YOLOv8 Human Detection Beginner's Repository – your entry point
    #### 3. Set Up Roboflow Integration
    ```python
    # Import the Roboflow library and create an instance with the provided API key
-   api_key = "4DcIf06sr4RzL8YOksef"
+   api_key = "your-api-key"
    rf = Roboflow(api_key)
 
    # Access the Roboflow workspace named "lazydevs"
